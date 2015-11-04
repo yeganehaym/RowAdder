@@ -1,0 +1,98 @@
+<html>
+
+<head>
+    <title>RowAdder Demo</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <link type="text/css" href="css/RowAdder.css" rel="stylesheet" />
+    <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="js/RowAdder.js" type="text/javascript"></script>
+    <script>
+        function nodeToString(node) {
+            var tmpNode = document.createElement("div");
+            tmpNode.appendChild(node.cloneNode(true));
+            var str = tmpNode.innerHTML;
+            tmpNode = node = null; // prevent memory leaks in IE
+            return str;
+        }
+
+        $(document).ready(function() {
+            $("#mypanel").RowAdder();
+
+            $("#addanotherform").on('click', function() {
+                $("#mypanel").RowAdder('add');
+            });
+            $("#Remove3").on('click', function() {
+                alert(nodeToString($("#mypanel").RowAdder('content', 3)));
+                $("#mypanel").RowAdder('remove', 3);
+            });
+
+            $("#show").on('click', function() {
+                $("#mypanel").RowAdder('show');
+            });
+
+            $("#hide").on('click', function() {
+                $("#mypanel").RowAdder('hide');
+            });
+            $("#size").on('click', function () {
+                alert($("#mypanel").RowAdder('count'));
+            });
+            //================= Example2
+            $("#mypanel2").RowAdder({
+                sample: '#row-sample',
+                type: 'text',
+                value:'Delete'
+        });
+            $("#addanotherform2").on('click', function () {
+                $("#mypanel2 ").RowAdder('add');
+            });
+
+
+            //================= Example3
+            $("#mypanel3").RowAdder({
+                type: 'image',
+                value: 'images/remove.png'
+            });
+            $("#addanotherform3").on('click', function () {
+                $("#mypanel3 ").RowAdder('add');
+            });
+        });
+    </script>
+</head>
+
+<body>
+<div id="row-sample">
+    <form style="margin: 0; padding: 0;">
+        Name:<input type="text"/>
+        <input type="radio" name="sex" value="male" checked="checked">Male
+        <input type="radio" name="sex" value="female">Female
+    </form>
+</div>
+<button id="addanotherform">Add New Form</button>
+<button id="Remove3">Remove 3</button>
+<button id="show">show</button>
+<button id="hide">hide</button>
+    <button id="size">row count</button>
+    <h2>
+        Example1 (Default)
+    </h2>
+<div id="mypanel"></div>
+
+
+<hr/>
+<h2>
+    Example2 (changeDefault)
+</h2>
+    <button id="addanotherform2">Add New Form</button>
+<div id="mypanel2"></div>
+
+    <hr />
+    <h2>
+        Example3 (Image Link)
+    </h2>
+    <button id="addanotherform3">Add New Form</button>
+<div id="mypanel3"></div>
+
+</body>
+</html>

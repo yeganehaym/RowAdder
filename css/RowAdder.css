@@ -1,0 +1,17 @@
+﻿.each-section {
+    margin: 20px;
+    padding: 5px;
+}
+
+
+.remove-link {
+    color:#999;
+     text-decoration: none;
+}
+
+a:hover.remove-link {
+   color:#802727;
+}
+.remove-image {
+    
+}
